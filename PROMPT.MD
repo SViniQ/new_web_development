@@ -16,7 +16,7 @@ Gemini, acesse o artigo do link ([Artigo Alura](https://www.alura.com.br/artigos
         
         * `"atuando como um Desenvolvedor Fullstack Sênior"`: Define um papel específico para a IA, o que é um exemplo de estímulo condicional para focar a resposta.
         
-        * `"crie um README.md"`: Indica claramente a ação e o formato esperado para a saída, ajudando a padronizar a resposta.
+        * `"crie um README.md profissinal"`: Indica claramente a ação e o formato esperado para a saída, ajudando a padronizar a resposta.
 
 3.  **ReAct (Reasoning + Action)**
         Embora não siga a estrutura rígida de "Thought, Action, Observation" descrita nos exemplos do material, o prompt se baseia no princípio fundamental do ReAct. Ele exige que o modelo combine o raciocínio com a execução de uma **ação externa** — neste caso, acessar o link para obter informações — antes de poder gerar a resposta final.

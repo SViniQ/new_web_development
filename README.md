@@ -181,7 +181,7 @@ src/
 
 ---
 
-## �️ Arquitetura
+## 🗃️ Arquitetura
 
 ### Padrões Arquiteturais Utilizados
 
@@ -309,7 +309,7 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 ---
 
-## � Agradecimentos
+## 🙏🏽 Agradecimentos
 
 - **Chakra UI Team**: Pela excelente biblioteca de componentes
 - **Vercel Team**: Pelo Next.js e suas inovações
