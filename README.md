@@ -46,11 +46,11 @@ A plataforma oferece uma experiência completa para usuários que buscam capacit
 
 ## 🚀 Status do Projeto
 
-<h4 align="center"> 
-	✅ TechForma - Projeto Concluído ✅
-</h4>
 
-**Todas as funcionalidades do repositório original foram implementadas com sucesso!**
+- ✅ FRONTEND - Concluído ✅
+
+- 🛠️ BACKEND - Para Desenvolvimento 🛠️
+
 
 ---
 
@@ -82,19 +82,14 @@ A aplicação possui uma interface moderna e intuitiva:
 
 ## 📁 Acesso ao Projeto
 
-### � Links Importantes
-
-- **Repositório Original**: [frontend-prompt-gen](https://github.com/YlsonSantos/frontend-prompt-gen.git)
-- **Tecnologias Obrigatórias**: Next.js + Chakra UI + Zustand
-
 ### 💻 Como baixar o projeto
 
 ```bash
 # Clone o repositório
-git clone https://github.com/seu-usuario/techforma.git
+git clone https://github.com/SViniQ/new_web_development.git
 
 # Acesse o diretório
-cd techforma
+cd new_web_development
 ```
 
 ---
@@ -131,7 +126,6 @@ npm run dev
 
 ### Framework & Core
 - ![Next.js](https://img.shields.io/badge/Next.js-15.5.4-black?logo=next.js) **Next.js 15** - Framework React com App Router
-- ![React](https://img.shields.io/badge/React-19.1.0-blue?logo=react) **React 19** - Biblioteca JavaScript para UI
 - ![TypeScript](https://img.shields.io/badge/TypeScript-blue?logo=typescript) **TypeScript** - Superset JavaScript com tipagem
 
 ### UI & Styling
@@ -199,15 +193,13 @@ src/
 #### **2. Gerenciamento de Estado (Zustand)**
 ```typescript
 interface AppState {
-  // Filtros de busca
+
   filtros: FiltrosPrograma
   setFiltros: (filtros: Partial<FiltrosPrograma>) => void
   
-  // Sistema de favoritos
   favoritos: string[]
   toggleFavorito: (programaId: string) => void
   
-  // Estados de UI
   loading: boolean
   setLoading: (loading: boolean) => void
 }
@@ -283,15 +275,31 @@ interface Programa {
 
 ---
 
-## 👥 Pessoas Desenvolvedoras
+## 👥 Pessoas Integrantes do Grupo
 
-| [<img loading="lazy" src="https://avatars.githubusercontent.com/u/username?v=4" width=115><br><sub>Seu Nome</sub>](https://github.com/username) |
-| :---: |
+**Vinícius Queiroz**
+- 🎯 Desenvolvimento da Página Inicial e Lógica de Login.
+- 🛠️ GitHub: [Vinícius S.Q](https://github.com/SViniQ)
 
-**Desenvolvedor Fullstack Sênior**
-- 💼 Especialista em Next.js e React
-- 🎯 Foco em arquitetura escalável e UX
-- 📧 Contato: [seu.email@exemplo.com](mailto:seu.email@exemplo.com)
+**Pierre Costa**
+- 🎯 Desenvolvimento da Lógica de Login.
+- 🛠️ GitHub: [PiierreC](https://github.com/PiierreC)
+
+**Vinícius Lima**
+- 🎯 Desenvolvimento da Lista de Instituições e Sistema de Favoritos.
+- 🛠️ GitHub: [Vinicius Pazos](https://github.com/Viniciusgithu)
+
+**Antônio Tenório**
+- 🎯 Desenvolvimento do Perfil do Uusário e sua Lógica implementada.
+- 🛠️ GitHub: [Antônio Tenório](https://github.com/antoniotfs)
+
+**Mateus Cavalcanti**
+- 🎯 Desenvolvimento do Sistema de Filtros e Roteamento.
+- 🛠️ GitHub: [Mateus Cavalcanti](https://github.com)
+
+**Ylson Santos**
+- 🎯 Criação do Design Responsivo e Processos de Loading.
+- 🛠️ GitHub: [YlsonSantos](https://github.com/YlsonSantos)
 
 ---
 
@@ -303,7 +311,6 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 ## � Agradecimentos
 
-- **Repositório Original**: [YlsonSantos](https://github.com/YlsonSantos) pelo projeto base
 - **Chakra UI Team**: Pela excelente biblioteca de componentes
 - **Vercel Team**: Pelo Next.js e suas inovações
 - **Zustand Team**: Pela solução elegante de gerenciamento de estado
