@@ -9,8 +9,8 @@
 </p>
 
 <p align="center">
-  <img loading="lazy" src="https://img.shields.io/github/stars/YlsonSantos/frontend-prompt-gen?style=social"/>
-  <img loading="lazy" src="https://img.shields.io/github/forks/YlsonSantos/frontend-prompt-gen?style=social"/>
+  <img loading="lazy" src="https://img.shields.io/github/stars/SViniQ/new_web_development?style=social"/>
+  <img loading="lazy" src="https://img.shields.io/github/forks/SViniQ/new_web_development?style=social"/>
 </p>
 
 ---
@@ -295,7 +295,7 @@ interface Programa {
 
 **Mateus Cavalcanti**
 - 🎯 Desenvolvimento do Sistema de Filtros e Roteamento.
-- 🛠️ GitHub: [Mateus Cavalcanti](https://github.com)
+- 🛠️ GitHub: [Mateus Cavalcanti](https://github.com/Mateus8708)
 
 **Ylson Santos**
 - 🎯 Criação do Design Responsivo e Processos de Loading.
