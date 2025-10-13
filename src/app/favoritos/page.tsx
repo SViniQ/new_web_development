@@ -156,13 +156,13 @@ export default function Favoritos() {
       
       <Container maxW="1400px" py={8}>
         <VStack spacing={8} align="stretch">
-          <Box textAlign="left">
+          <Box textAlign={{ base: 'center', md: 'left' }}>
             <HStack align="center" spacing={3}>
-              <Heading as="h1" size="xl" fontWeight="bold">
+              <Heading as="h1" size={{ base: 'lg', md: 'xl' }} fontWeight="bold" mb={2}>
                 Meus Favoritos
               </Heading>
             </HStack>
-            <Text fontSize="md" color="gray.600" mt={2}>
+            <Text fontSize={{ base: 'sm', md: 'md' }} color="gray.600">
               Programas que você salvou para consultar depois
             </Text>
           </Box>

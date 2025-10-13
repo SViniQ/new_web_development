@@ -89,11 +89,11 @@ export default function Instituicoes() {
       <Navigation />
       <Container maxW="1400px" py={8}>
         <VStack spacing={8} align="stretch">
-          <Box textAlign="left">
-            <Heading as="h1" size="xl" fontWeight="bold" mb={2}>
+          <Box textAlign={{ base: 'center', md: 'left' }}>
+            <Heading as="h1" size={{ base: 'lg', md: 'xl' }} fontWeight="bold" mb={2}>
             Instituições Parceiras
             </Heading>
-            <Text fontSize="md" color="gray.600">
+            <Text fontSize={{ base: 'sm', md: 'md' }} color="gray.600">
               Conheça as organizações que oferecem os melhores programas de formação em tecnologia
             </Text>
           </Box>

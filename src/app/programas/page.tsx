@@ -22,7 +22,7 @@ import { useAppStore } from '@/store/useAppStore'
 import { Programa } from '@/types/domain'
 import { ArrowLeftIcon, ArrowRightIcon } from '@chakra-ui/icons'
 
-const ITEMS_PER_PAGE = 6 // Define 6 programas por página
+const ITEMS_PER_PAGE = 6
 
 export default function Programas() {
   const [todosProgramas, setTodosProgramas] = useState<Programa[]>([])
@@ -39,7 +39,7 @@ export default function Programas() {
       try {
         const resultado = await programasService.listarProgramas(filtros)
         setTodosProgramas(resultado)
-        setCurrentPage(1) // Reseta para a primeira página ao aplicar novos filtros
+        setCurrentPage(1)
       } catch (err) {
         setError('Erro ao carregar programas. Tente novamente.')
         console.error('Erro ao carregar programas:', err)
@@ -109,9 +109,6 @@ export default function Programas() {
 
     return (
       <VStack spacing={6} align="stretch">
-        <Text fontSize="sm" color="gray.500">
-          {todosProgramas.length} programa{todosProgramas.length !== 1 ? 's' : ''} encontrado{todosProgramas.length !== 1 ? 's' : ''}
-        </Text>
         <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6}>
           {programasDaPagina.map((programa) => (
             <ProgramCard key={programa.id} programa={programa} />
@@ -145,11 +142,11 @@ export default function Programas() {
       <Navigation />
       <Container maxW="1400px" py={8}>
         <VStack spacing={8} align="stretch">
-          <Box textAlign="left">
-            <Heading as="h1" size="xl" fontWeight="bold" mb={2}>
+          <Box textAlign={{ base: 'center', md: 'left' }}>
+            <Heading as="h1" size={{ base: 'lg', md: 'xl' }} fontWeight="bold" mb={2}>
               Catálogo de Programas
             </Heading>
-            <Text fontSize="md" color="gray.600">
+            <Text fontSize={{ base: 'sm', md: 'md' }} color="gray.600">
               Encontre o programa ideal para sua carreira em tecnologia
             </Text>
           </Box>

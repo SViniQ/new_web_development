@@ -73,8 +73,8 @@ export default function Home() {
               Centralizamos oportunidades de capacitação em desenvolvimento, dados, cloud, UX e muito mais.
             </Text>
             
-            <HStack spacing={4} pt={4}>
-              <Button as={Link} href="/programas" size="lg" colorScheme="blue" bg="#007bff" borderRadius="2xl" rightIcon={<ArrowForwardIcon />} fontSize="sm">
+            <HStack spacing={4} pt={4} flexDirection={{ base: 'column', sm: 'row' }}>
+              <Button as={Link} href="/programas" size="lg" colorScheme="blue" bg="#007bff" borderRadius="2xl" rightIcon={<ArrowForwardIcon />} fontSize="sm" w={{ base: 'full', sm: 'auto' }}>
                 Explorar programas
               </Button>
               <Button 
@@ -89,6 +89,7 @@ export default function Home() {
                 boxShadow="sm"
                 borderRadius="2xl"
                 fontSize="sm"
+                w={{ base: 'full', sm: 'auto' }}
               >
                 Ver instituições
               </Button>
@@ -100,8 +101,8 @@ export default function Home() {
       <Container maxW="1400px" py={16}>
         <VStack spacing={8} align="stretch">
           
-          <HStack justify="space-between" align="end" pb={4} borderBottom="1px solid" borderColor="transparent">
-            <Box textAlign="left">
+          <HStack justify="space-between" align="end" pb={4} borderBottom="1px solid" borderColor="transparent" flexDirection={{ base: 'column', md: 'row' }} alignItems={{ base: 'center', md: 'flex-end' }}>
+            <Box textAlign={{ base: 'center', md: 'left' }}>
               <Heading as="h2" size="xl" color="gray.800">
                 Programas em destaque
               </Heading>
@@ -117,6 +118,7 @@ export default function Home() {
               rightIcon={<ArrowForwardIcon />}
               fontWeight="medium"
               borderRadius="lg"
+              mt={{ base: 4, md: 0 }}
             >
               Ver todos
             </Button>

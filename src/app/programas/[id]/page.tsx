@@ -150,9 +150,9 @@ export default function ProgramDetails() {
           <Card shadow="md" borderRadius="lg">
             <CardBody>
               <VStack spacing={4} align="stretch">
-                <HStack justify="space-between" align="center">
+                <HStack justify="space-between" align="start">
                   <VStack align="start" spacing={1} flex={1} >
-                    <Heading as="h2" size="lg" color="black" lineHeight="1.2" mb={4}>
+                    <Heading as="h2" size={{ base: 'md', md: 'lg' }} color="black" lineHeight="1.2" mb={4}>
                       {programa.titulo}
                     </Heading>
 
@@ -163,7 +163,7 @@ export default function ProgramDetails() {
                           name={instituicao.nome}
                           size="sm"
                         />
-                        <Text fontSize="md" fontWeight="medium" color="gray.700">
+                        <Text fontSize={{ base: 'sm', md: 'md' }} fontWeight="medium" color="gray.700">
                           {instituicao.nome}
                         </Text>
                       </HStack>
@@ -178,22 +178,23 @@ export default function ProgramDetails() {
                     color={isFavorito ? 'red.500' : 'gray.400'}
                     onClick={() => toggleFavorito(programa.id)}
                     _hover={{ color: isFavorito ? 'red.600' : 'red.400' }}
+                    alignSelf="flex-start" 
                   />
                 </HStack>
 
                 <Wrap spacing={2}>
                   <WrapItem>
-                    <Badge colorScheme="blue" variant="solid" px={2} py={0.5} fontSize="xs">
+                    <Badge colorScheme="blue" variant="solid" px={2} py={0.5} fontSize={{ base: 'xx-small', md: 'xs' }}>
                       {areaLabels[programa.area]}
                     </Badge>
                   </WrapItem>
                   <WrapItem>
-                    <Badge colorScheme="green" variant="outline" px={2} py={0.5} fontSize="xs">
+                    <Badge colorScheme="green" variant="outline" px={2} py={0.5} fontSize={{ base: 'xx-small', md: 'xs' }}>
                       {nivelLabels[programa.nivel]}
                     </Badge>
                   </WrapItem>
                   <WrapItem>
-                    <Badge colorScheme="purple" variant="outline" px={2} py={0.5} fontSize="xs">
+                    <Badge colorScheme="purple" variant="outline" px={2} py={0.5} fontSize={{ base: 'xx-small', md: 'xs' }}>
                       {modalidadeLabels[programa.modalidade]}
                     </Badge>
                   </WrapItem>
@@ -292,7 +293,7 @@ export default function ProgramDetails() {
                   target="_blank"
                   rel="noopener noreferrer"
                   colorScheme="blue"
-                  size="md"
+                  size="sm"
                   w="full"
                 >
                    Edital completo
@@ -306,7 +307,7 @@ export default function ProgramDetails() {
                     rel="noopener noreferrer"
                     variant="outline"
                     colorScheme="blue"
-                    size="md"
+                    size="sm"
                     w="full"
                   >
                     Visitar {instituicao.nome}

@@ -8,11 +8,16 @@ import {
   Container,
   HStack,
   Icon,
+  IconButton,
+  Collapse,
+  VStack,
 } from '@chakra-ui/react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { FaHome, FaBookOpen, FaBuilding, FaHeart, FaUser } from 'react-icons/fa'
 import { GraduationCap } from 'lucide-react'
+import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
+import { useState } from 'react'
 
 const NavItems = [
   { name: 'Início', href: '/', icon: <FaHome /> },
@@ -24,6 +29,9 @@ const NavItems = [
 
 export function Navigation() {
   const pathname = usePathname()
+  const [isOpen, setIsOpen] = useState(false)
+
+  const toggleMenu = () => setIsOpen(!isOpen)
 
   return (
     <Box
@@ -74,30 +82,38 @@ export function Navigation() {
             ))}
           </HStack>
 
-          <HStack spacing={1} display={{ base: 'flex', md: 'none' }}>
+          <IconButton
+            aria-label="Abrir Menu"
+            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+            onClick={toggleMenu}
+            display={{ base: 'flex', md: 'none' }}
+            variant="ghost"
+          />
+        </Flex>
+      </Container>
+      <Collapse in={isOpen} animateOpacity>
+        <Box pb={4} display={{ md: 'none' }}>
+          <VStack as="nav" spacing={2} align="stretch" px={4}>
             {NavItems.map((item) => (
               <Link key={item.name} href={item.href} passHref>
                 <Button
                   as="a"
                   variant={pathname === item.href ? 'solid' : 'ghost'}
-                  colorScheme={pathname === item.href ? 'blue' : 'gray'}
                   bg={pathname === item.href ? 'blue.500' : 'transparent'}
                   color={pathname === item.href ? 'white' : 'gray.800'}
                   size="md"
-                  p={2}
-                  borderRadius={pathname === item.href ? 'md' : 'full'}
-                  _hover={{
-                    bg: pathname === item.href ? 'blue.600' : 'gray.100',
-                    color: pathname === item.href ? 'white' : 'gray.900'
-                  }}
+                  w="full"
+                  justifyContent="flex-start"
+                  leftIcon={item.icon}
+                  onClick={toggleMenu}
                 >
-                  {item.icon}
+                  {item.name}
                 </Button>
               </Link>
             ))}
-          </HStack>
-        </Flex>
-      </Container>
+          </VStack>
+        </Box>
+      </Collapse>
     </Box>
   )
 }

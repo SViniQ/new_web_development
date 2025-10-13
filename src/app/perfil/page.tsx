@@ -24,7 +24,7 @@ export default function Perfil() {
   const usuario = {
     nome: 'João Silva',
     email: 'joao.silva@email.com',
-    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
+    avatar: '/perfil.jpg',
     interesses: ['Frontend', 'React', 'TypeScript', 'Node.js', 'Cloud', 'UX/UI'],
     bio: 'Desenvolvedor apaixonado por tecnologia, sempre em busca de novos desafios e oportunidades de aprendizado.',
   }
@@ -35,11 +35,11 @@ export default function Perfil() {
       
       <Container maxW="1400px" py={8}>
         <VStack spacing={8} align="stretch">
-          <Box textAlign="left">
-            <Heading as="h1" size="xl" fontWeight="bold" mb={2}>
+          <Box textAlign={{ base: 'center', md: 'left' }}>
+            <Heading as="h1" size={{ base: 'lg', md: 'xl' }} fontWeight="bold" mb={2}>
               Meu Perfil
             </Heading>
-            <Text fontSize="md" color="gray.600">
+            <Text fontSize={{ base: 'sm', md: 'md' }} color="gray.600">
               Gerencie suas informações e preferências
             </Text>
           </Box>
@@ -67,7 +67,6 @@ export default function Perfil() {
                         {usuario.nome}
                       </Heading>
                       <HStack color="gray.600">
-                        <EmailIcon />
                         <Text>{usuario.email}</Text>
                       </HStack>
                     </VStack>
