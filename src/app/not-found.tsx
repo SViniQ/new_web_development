@@ -16,7 +16,7 @@ export default function NotFound() {
     <Box minH="100vh" bg="gray.50">
       <Navigation />
       
-      <Container maxW="container.xl" py={20}>
+      <Container maxW="1400px" py={20}>
         <VStack spacing={8} textAlign="center">
           <Text fontSize="8xl">🔍</Text>
           <Heading as="h1" size="2xl" color="blue.600">

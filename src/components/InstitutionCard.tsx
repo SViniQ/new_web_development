@@ -28,7 +28,6 @@ const InstitutionCard = ({ instituicao }: InstitutionCardProps) => {
       h="full"
       display="flex"
       flexDirection="column"
-      // Alteração: Removido o 'transform: scale(1.01)' para eliminar o zoom
       _hover={{ shadow: 'md' }}
     >
       <VStack spacing={0} align="stretch" flexGrow={1}>
@@ -62,7 +61,6 @@ const InstitutionCard = ({ instituicao }: InstitutionCardProps) => {
         </CardBody>
       </VStack>
 
-      {/* Box contendo o botão, sempre alinhado ao final do Card */}
       <Box p={6} pt={0}>
         <Button 
           as="a"

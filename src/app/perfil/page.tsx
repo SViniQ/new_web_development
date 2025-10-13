@@ -21,7 +21,6 @@ import { EmailIcon, InfoIcon } from '@chakra-ui/icons'
 import { Navigation } from '@/components/Navigation'
 
 export default function Perfil() {
-  // Mock user data - em um app real, isso viria de um contexto de autenticação
   const usuario = {
     nome: 'João Silva',
     email: 'joao.silva@email.com',
@@ -36,7 +35,6 @@ export default function Perfil() {
       
       <Container maxW="1400px" py={8}>
         <VStack spacing={8} align="stretch">
-          {/* Cabeçalho alinhado à esquerda */}
           <Box textAlign="left">
             <Heading as="h1" size="xl" fontWeight="bold" mb={2}>
               Meu Perfil

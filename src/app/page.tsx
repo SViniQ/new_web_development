@@ -43,7 +43,6 @@ export default function Home() {
     <Box minH="100vh" bg="gray.50">
       <Navigation />
       
-      {/* Hero Section */}
       <Box 
         bgGradient="linear(to-br, #E6F0F8, #E3E9F8)" 
         color="gray.800" 
@@ -98,11 +97,9 @@ export default function Home() {
         </Container>
       </Box>
 
-      {/* Programas em Destaque */}
       <Container maxW="1400px" py={16}>
         <VStack spacing={8} align="stretch">
           
-          {/* Cabeçalho da Seção de Destaques */}
           <HStack justify="space-between" align="end" pb={4} borderBottom="1px solid" borderColor="transparent">
             <Box textAlign="left">
               <Heading as="h2" size="xl" color="gray.800">
