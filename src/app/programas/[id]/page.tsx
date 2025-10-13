@@ -29,6 +29,7 @@ import { Navigation } from '@/components/Navigation'
 import { programasService } from '@/services/programas.service'
 import { useAppStore } from '@/store/useAppStore'
 import { Programa, Instituicao } from '@/types/domain'
+import { FaHeart } from 'react-icons/fa'
 
 const areaLabels: Record<string, string> = {
   frontend: 'Frontend',
@@ -56,31 +57,31 @@ export default function ProgramDetails() {
   const params = useParams()
   const router = useRouter()
   const id = params?.id as string
-  
+
   const [programa, setPrograma] = useState<Programa | null>(null)
   const [instituicao, setInstituicao] = useState<Instituicao | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  
+
   const { favoritos, toggleFavorito } = useAppStore()
   const isFavorito = programa ? favoritos.includes(programa.id) : false
 
   useEffect(() => {
     const carregarDados = async () => {
       if (!id) return
-      
+
       setLoading(true)
       setError(null)
-      
+
       try {
         const prog = await programasService.buscarPrograma(id)
         if (!prog) {
           setError('Programa não encontrado.')
           return
         }
-        
+
         setPrograma(prog)
-        
+
         const inst = await programasService.buscarInstituicao(prog.instituicaoId)
         setInstituicao(inst)
       } catch (err) {
@@ -112,7 +113,7 @@ export default function ProgramDetails() {
     return (
       <Box minH="100vh" bg="gray.50">
         <Navigation />
-        <Container maxW="container.xl" py={8}>
+        <Container maxW="1400px" py={8}>
           <VStack spacing={6}>
             <Alert status="error">
               <AlertIcon />
@@ -130,66 +131,69 @@ export default function ProgramDetails() {
   return (
     <Box minH="100vh" bg="gray.50">
       <Navigation />
-      
-      <Container maxW="container.xl" py={8}>
+
+      <Container maxW="1400px" py={8}>
         <VStack spacing={8} align="stretch">
-          {/* Header com botão voltar */}
-          <HStack>
+          <HStack spacing={2} align="center">
             <IconButton
               aria-label="Voltar"
               icon={<ArrowBackIcon />}
               variant="ghost"
               onClick={() => router.back()}
+              size="md"
             />
-            <Text color="gray.600">Detalhes do Programa</Text>
+            <Heading as="h1" size="md" fontWeight="bold">
+              Voltar
+            </Heading>
           </HStack>
 
-          {/* Cabeçalho do programa */}
-          <Card shadow="lg">
+          <Card shadow="md" borderRadius="lg">
             <CardBody>
-              <VStack spacing={6} align="stretch">
-                <HStack justify="space-between" align="start">
-                  <VStack align="start" spacing={3} flex={1}>
-                    <Heading as="h1" size="xl" color="blue.700" lineHeight="1.2">
+              <VStack spacing={4} align="stretch">
+                <HStack justify="space-between" align="center">
+                  <VStack align="start" spacing={1} flex={1} >
+                    <Heading as="h2" size="lg" color="black" lineHeight="1.2" mb={4}>
                       {programa.titulo}
                     </Heading>
-                    
+
                     {instituicao && (
-                      <HStack spacing={3}>
-                        <Avatar 
-                          src={instituicao.logoUrl} 
+                      <HStack spacing={2} align="center" mb={1}>
+                        <Avatar
+                          src={instituicao.logoUrl}
                           name={instituicao.nome}
                           size="sm"
                         />
-                        <Text fontSize="lg" fontWeight="medium" color="gray.700">
+                        <Text fontSize="md" fontWeight="medium" color="gray.700">
                           {instituicao.nome}
                         </Text>
                       </HStack>
                     )}
                   </VStack>
-                  
+
                   <IconButton
                     aria-label={isFavorito ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
-                    icon={<Text fontSize="2xl">{isFavorito ? '❤️' : '🤍'}</Text>}
+                    icon={<FaHeart />}
                     variant="ghost"
-                    size="lg"
+                    size="md"
+                    color={isFavorito ? 'red.500' : 'gray.400'}
                     onClick={() => toggleFavorito(programa.id)}
+                    _hover={{ color: isFavorito ? 'red.600' : 'red.400' }}
                   />
                 </HStack>
 
-                <Wrap spacing={3}>
+                <Wrap spacing={2}>
                   <WrapItem>
-                    <Badge colorScheme="blue" variant="solid" px={3} py={1} fontSize="sm">
+                    <Badge colorScheme="blue" variant="solid" px={2} py={0.5} fontSize="xs">
                       {areaLabels[programa.area]}
                     </Badge>
                   </WrapItem>
                   <WrapItem>
-                    <Badge colorScheme="green" variant="outline" px={3} py={1} fontSize="sm">
+                    <Badge colorScheme="green" variant="outline" px={2} py={0.5} fontSize="xs">
                       {nivelLabels[programa.nivel]}
                     </Badge>
                   </WrapItem>
                   <WrapItem>
-                    <Badge colorScheme="purple" variant="outline" px={3} py={1} fontSize="sm">
+                    <Badge colorScheme="purple" variant="outline" px={2} py={0.5} fontSize="xs">
                       {modalidadeLabels[programa.modalidade]}
                     </Badge>
                   </WrapItem>
@@ -198,22 +202,20 @@ export default function ProgramDetails() {
             </CardBody>
           </Card>
 
-          <SimpleGrid columns={{ base: 1, lg: 3 }} spacing={8}>
-            {/* Conteúdo principal */}
+          <SimpleGrid columns={{ base: 1, lg: 3 }} spacing={6}>
             <Box gridColumn={{ base: 1, lg: '1 / 3' }}>
-              <VStack spacing={6} align="stretch">
-                {/* Sobre o programa */}
+              <VStack spacing={4} align="stretch">
                 <Card shadow="md">
                   <CardBody>
-                    <VStack spacing={4} align="stretch">
-                      <Heading as="h2" size="lg" color="blue.700">
+                    <VStack spacing={3} align="stretch">
+                      <Heading as="h3" size="md" color="black">
                         Sobre o programa
                       </Heading>
-                      <Text color="gray.700" lineHeight="1.7" fontSize="lg">
+                      <Text color="gray.700" lineHeight="1.6" fontSize="md">
                         {programa.resumo}
                       </Text>
                       {programa.descricaoCompleta && (
-                        <Text color="gray.600" lineHeight="1.6">
+                        <Text color="gray.600" lineHeight="1.5" fontSize="sm">
                           {programa.descricaoCompleta}
                         </Text>
                       )}
@@ -221,22 +223,21 @@ export default function ProgramDetails() {
                   </CardBody>
                 </Card>
 
-                {/* Tecnologias */}
                 <Card shadow="md">
                   <CardBody>
-                    <VStack spacing={4} align="stretch">
-                      <Heading as="h2" size="lg" color="blue.700">
-                        🚀 Tecnologias abordadas
+                    <VStack spacing={3} align="stretch">
+                      <Heading as="h3" size="md" color="black" mb={3}>
+                        Tecnologias abordadas
                       </Heading>
-                      <Wrap spacing={2}>
+                      <Wrap spacing={1}>
                         {programa.tags.map((tag) => (
                           <WrapItem key={tag}>
-                            <Badge 
-                              variant="outline" 
+                            <Badge
+                              variant="outline"
                               colorScheme="blue"
-                              px={3} 
-                              py={1}
-                              fontSize="sm"
+                              px={2}
+                              py={0.5}
+                              fontSize="xs"
                             >
                               {tag}
                             </Badge>
@@ -249,24 +250,22 @@ export default function ProgramDetails() {
               </VStack>
             </Box>
 
-            {/* Sidebar com informações */}
-            <VStack spacing={6} align="stretch">
-              {/* Informações do programa */}
+            <VStack spacing={4} align="stretch">
               <Card shadow="md" bg="blue.50" borderLeft="4px solid" borderLeftColor="blue.400">
                 <CardBody>
-                  <VStack spacing={4} align="stretch">
-                    <Heading as="h3" size="md" color="blue.700">
-                      📋 Informações
+                  <VStack spacing={3} align="stretch">
+                    <Heading as="h4" size="sm" color="black">
+                      Informações
                     </Heading>
-                    
-                    <VStack spacing={3} align="stretch">
+
+                    <VStack spacing={2} align="stretch">
                       <HStack>
                         <InfoIcon color="blue.500" />
                         <Text fontSize="sm">
                           <strong>Localização:</strong> {programa.cidade}, {programa.estado}
                         </Text>
                       </HStack>
-                      
+
                       <HStack>
                         <CalendarIcon color="blue.500" />
                         <Text fontSize="sm">
@@ -274,9 +273,9 @@ export default function ProgramDetails() {
                           {new Date(programa.periodoInscricao.inicio).toLocaleDateString('pt-BR')} - {new Date(programa.periodoInscricao.fim).toLocaleDateString('pt-BR')}
                         </Text>
                       </HStack>
-                      
+
                       <Divider />
-                      
+
                       <Text fontSize="sm" color="gray.700">
                         <strong>Público-alvo:</strong><br />
                         {programa.publicoAlvo}
@@ -286,30 +285,28 @@ export default function ProgramDetails() {
                 </CardBody>
               </Card>
 
-              {/* Ações */}
-              <VStack spacing={3}>
-                <Button 
+              <VStack spacing={2}>
+                <Button
                   as="a"
                   href={programa.editalUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  rightIcon={<ExternalLinkIcon />}
                   colorScheme="blue"
-                  size="lg"
+                  size="md"
                   w="full"
                 >
-                  Ver Edital Completo
+                   Edital completo
                 </Button>
-                
+
                 {instituicao && (
-                  <Button 
+                  <Button
                     as="a"
                     href={instituicao.siteUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     variant="outline"
                     colorScheme="blue"
-                    size="lg"
+                    size="md"
                     w="full"
                   >
                     Visitar {instituicao.nome}

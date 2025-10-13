@@ -32,7 +32,7 @@ const InstitutionCard = ({ instituicao }: InstitutionCardProps) => {
     >
       <VStack spacing={0} align="stretch" flexGrow={1}>
         <CardHeader pb={3}>
-          <HStack spacing={4} align="start">
+          <HStack spacing={4} align="center">
             <Avatar 
               src={instituicao.logoUrl} 
               name={instituicao.nome}

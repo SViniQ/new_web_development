@@ -20,13 +20,11 @@ import {
 import { ExternalLinkIcon } from '@chakra-ui/icons'
 import { useAppStore } from '@/store/useAppStore'
 import Link from 'next/link'
-import { FaHeart, FaMapPin, FaCalendarAlt } from 'react-icons/fa' // Importa ícones do original
-
+import { FaHeart, FaMapPin, FaCalendarAlt } from 'react-icons/fa' 
 interface ProgramCardProps {
   programa: Programa
 }
 
-// Mapeamento para exibição
 const areaLabels: Record<string, string> = {
   frontend: 'Frontend',
   backend: 'Backend',
@@ -65,7 +63,7 @@ const ProgramCard = ({ programa }: ProgramCardProps) => {
       h="full" 
       shadow="md" 
       transition="all 0.2s"
-      _hover={{ shadow: 'lg', transform: 'translateY(-2px)' }}
+      _hover={{ shadow: 'lg' }}
       display="flex"
       flexDirection="column"
       borderRadius="lg"
