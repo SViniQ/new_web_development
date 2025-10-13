@@ -62,22 +62,23 @@ export function Navigation() {
 
           <HStack spacing={2} display={{ base: 'none', md: 'flex' }} py={2}>
             {NavItems.map((item) => (
-              <Link key={item.name} href={item.href} passHref>
-                <Button
-                  variant={pathname === item.href ? 'solid' : 'ghost'}
-                  bg={pathname === item.href ? '#007bff' : 'transparent'}
-                  color={pathname === item.href ? 'white' : 'gray.800'}
-                  size="sm"
-                  borderRadius={pathname === item.href ? 'md' : 'full'}
-                  _hover={{
-                    bg: pathname === item.href ? 'blue.800' : 'gray.100',
-                    color: pathname === item.href ? 'white' : 'gray.900'
-                  }}
-                  leftIcon={item.icon}
-                >
-                  {item.name}
-                </Button>
-              </Link>
+              <Button
+                key={item.name}
+                as={Link}
+                href={item.href}
+                variant={pathname === item.href ? 'solid' : 'ghost'}
+                bg={pathname === item.href ? '#007bff' : 'transparent'}
+                color={pathname === item.href ? 'white' : 'gray.800'}
+                size="sm"
+                borderRadius={pathname === item.href ? 'md' : 'full'}
+                _hover={{
+                  bg: pathname === item.href ? 'blue.800' : 'gray.100',
+                  color: pathname === item.href ? 'white' : 'gray.900'
+                }}
+                leftIcon={item.icon}
+              >
+                {item.name}
+              </Button>
             ))}
           </HStack>
 
@@ -90,25 +91,26 @@ export function Navigation() {
           />
         </Flex>
       </Container>
+      {/* @ts-expect-error O componente Collapse do Chakra UI na versão atual tem um problema de tipagem com o children */}
       <Collapse in={isOpen} animateOpacity>
         <Box pb={4} display={{ md: 'none' }}>
           <VStack as="nav" spacing={2} align="stretch" px={4}>
             {NavItems.map((item) => (
-              <Link key={item.name} href={item.href} passHref>
-                <Button
-                  as="a"
-                  variant={pathname === item.href ? 'solid' : 'ghost'}
-                  bg={pathname === item.href ? 'blue.500' : 'transparent'}
-                  color={pathname === item.href ? 'white' : 'gray.800'}
-                  size="md"
-                  w="full"
-                  justifyContent="flex-start"
-                  leftIcon={item.icon}
-                  onClick={toggleMenu}
-                >
-                  {item.name}
-                </Button>
-              </Link>
+              <Button
+                key={item.name}
+                as={Link}
+                href={item.href}
+                variant={pathname === item.href ? 'solid' : 'ghost'}
+                bg={pathname === item.href ? 'blue.500' : 'transparent'}
+                color={pathname === item.href ? 'white' : 'gray.800'}
+                size="md"
+                w="full"
+                justifyContent="flex-start"
+                leftIcon={item.icon}
+                onClick={toggleMenu}
+              >
+                {item.name}
+              </Button>
             ))}
           </VStack>
         </Box>
