@@ -18,6 +18,7 @@ import { Navigation } from '@/components/Navigation'
 import ProgramCard from '@/components/ProgramCard'
 import { programasService } from '@/services/programas.service'
 import { Programa } from '@/types/domain'
+import { ArrowForwardIcon } from '@chakra-ui/icons' // Importando o ícone de seta
 
 export default function Home() {
   const [programasDestaque, setProgramasDestaque] = useState<Programa[]>([])
@@ -43,32 +44,54 @@ export default function Home() {
       <Navigation />
       
       {/* Hero Section */}
-      <Box bg="gradient-to-br from-blue.500 to-purple.600" color="white" py={20}>
+      <Box 
+        bgGradient="linear(to-br, #E6F0F8, #E3E9F8)" 
+        color="gray.800" 
+        py={{ base: 16, md: 24 }}
+      >
         <Container maxW="container.xl">
-          <VStack spacing={6} textAlign="center">
-            <Box>
-              <Text fontSize="sm" fontWeight="medium" mb={2} opacity={0.9}>
+          <VStack spacing={3} textAlign="center">
+            <Box px={4} py={2} bg="orange.50" borderRadius="full">
+              <Text fontSize="sm" fontWeight="medium" color="orange.400">
                 ✨ Sua carreira em tecnologia começa aqui
               </Text>
-              <Heading as="h1" size="3xl" mb={4} lineHeight="1.1">
-                Encontre os melhores{' '}
-                <Text as="span" bgGradient="linear(to-r, yellow.300, orange.300)" bgClip="text">
+            </Box>
+            <Box>
+              <Heading as="h1" size={{ base: '2xl', md: '3xl' }} mb="1" lineHeight="1.1" fontWeight="bold" color="gray.800">
+                Encontre os melhores
+              </Heading>
+              <Heading as="h1" size={{ base: '2xl', md: '3xl' }} mb="1" lineHeight="1.1" fontWeight="bold">
+                <Text as="span" bgGradient="linear(to-r, #3A73E4, #805AD5)" bgClip="text">
                   programas de formação
-                </Text>{' '}
+                </Text>
+              </Heading>
+              <Heading as="h1" size={{ base: '2xl', md: '3xl' }} lineHeight="1.1" fontWeight="bold" color="gray.800">
                 em tecnologia
               </Heading>
             </Box>
             
-            <Text fontSize="xl" maxW="2xl" opacity={0.9} lineHeight="1.6">
+            <Text fontSize={{ base: 'md', md: 'xl' }} maxW="2xl" color="gray.600" lineHeight="1.6">
               Centralizamos oportunidades de capacitação em desenvolvimento, dados, cloud, UX e muito mais.
             </Text>
             
             <HStack spacing={4} pt={4}>
-              <Button as={Link} href="/programas" size="lg" colorScheme="yellow" color="gray.800">
-                Explorar Programas
+              <Button as={Link} href="/programas" size="lg" colorScheme="blue" bg="#007bff" borderRadius="2xl" rightIcon={<ArrowForwardIcon />} fontSize="sm">
+                Explorar programas
               </Button>
-              <Button as={Link} href="/instituicoes" size="lg" variant="outline" _hover={{ bg: 'whiteAlpha.200' }}>
-                Ver Instituições
+              <Button 
+                as={Link} 
+                href="/instituicoes" 
+                size="lg" 
+                variant="outline"
+                bg="white"
+                color="gray.800"
+                borderColor="gray.200"
+                _hover={{ bg: "gray.50" }}
+                boxShadow="sm"
+                borderRadius="2xl"
+                fontSize="sm"
+              >
+                Ver instituições
               </Button>
             </HStack>
           </VStack>
