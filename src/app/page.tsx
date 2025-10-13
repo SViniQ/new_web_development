@@ -18,7 +18,7 @@ import { Navigation } from '@/components/Navigation'
 import ProgramCard from '@/components/ProgramCard'
 import { programasService } from '@/services/programas.service'
 import { Programa } from '@/types/domain'
-import { ArrowForwardIcon } from '@chakra-ui/icons' // Importando o ícone de seta
+import { ArrowForwardIcon } from '@chakra-ui/icons'
 
 export default function Home() {
   const [programasDestaque, setProgramasDestaque] = useState<Programa[]>([])
@@ -28,7 +28,7 @@ export default function Home() {
     const carregarProgramas = async () => {
       try {
         const programas = await programasService.listarProgramas()
-        setProgramasDestaque(programas.slice(0, 6)) // Primeiros 6 programas
+        setProgramasDestaque(programas.slice(0, 6))
       } catch (error) {
         console.error('Erro ao carregar programas:', error)
       } finally {
@@ -49,7 +49,7 @@ export default function Home() {
         color="gray.800" 
         py={{ base: 16, md: 24 }}
       >
-        <Container maxW="container.xl">
+        <Container maxW="1400px">
           <VStack spacing={3} textAlign="center">
             <Box px={4} py={2} bg="orange.50" borderRadius="full">
               <Text fontSize="sm" fontWeight="medium" color="orange.400">
@@ -99,16 +99,31 @@ export default function Home() {
       </Box>
 
       {/* Programas em Destaque */}
-      <Container maxW="container.xl" py={16}>
-        <VStack spacing={12} align="stretch">
-          <Box textAlign="center">
-            <Heading as="h2" size="xl" color="blue.700" mb={4}>
-              🚀 Programas em Destaque
-            </Heading>
-            <Text fontSize="lg" color="gray.600">
-              Confira as melhores oportunidades disponíveis agora
-            </Text>
-          </Box>
+      <Container maxW="1400px" py={16}>
+        <VStack spacing={8} align="stretch">
+          
+          {/* Cabeçalho da Seção de Destaques */}
+          <HStack justify="space-between" align="end" pb={4} borderBottom="1px solid" borderColor="transparent">
+            <Box textAlign="left">
+              <Heading as="h2" size="xl" color="gray.800">
+                Programas em destaque
+              </Heading>
+              <Text fontSize="lg" color="gray.600">
+                Confira as melhores oportunidades disponíveis
+              </Text>
+            </Box>
+            <Button
+              as={Link}
+              href="/programas"
+              variant="outline"
+              colorScheme="gray"
+              rightIcon={<ArrowForwardIcon />}
+              fontWeight="medium"
+              borderRadius="lg"
+            >
+              Ver todos
+            </Button>
+          </HStack>
 
           {loading ? (
             <Center py={10}>
@@ -118,19 +133,11 @@ export default function Home() {
               </VStack>
             </Center>
           ) : (
-            <>
-              <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={8}>
-                {programasDestaque.map((programa) => (
-                  <ProgramCard key={programa.id} programa={programa} />
-                ))}
-              </SimpleGrid>
-              
-              <Center>
-                <Button as={Link} href="/programas" variant="outline" colorScheme="blue" size="lg">
-                  Ver Todos os Programas
-                </Button>
-              </Center>
-            </>
+            <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6}>
+              {programasDestaque.map((programa) => (
+                <ProgramCard key={programa.id} programa={programa} />
+              ))}
+            </SimpleGrid>
           )}
         </VStack>
       </Container>
