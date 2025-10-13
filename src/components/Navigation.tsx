@@ -6,16 +6,20 @@ import {
   Button,
   Text,
   Container,
+  HStack,
+  Icon,
 } from '@chakra-ui/react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { FaHome, FaBookOpen, FaBuilding, FaHeart, FaUser } from 'react-icons/fa'
+import { GraduationCap } from 'lucide-react'
 
 const NavItems = [
-  { name: 'Início', href: '/', icon: '🏠' },
-  { name: 'Programas', href: '/programas', icon: '📚' },
-  { name: 'Instituições', href: '/instituicoes', icon: '🏢' },
-  { name: 'Favoritos', href: '/favoritos', icon: '❤️' },
-  { name: 'Perfil', href: '/perfil', icon: '👤' },
+  { name: 'Início', href: '/', icon: <FaHome /> },
+  { name: 'Programas', href: '/programas', icon: <FaBookOpen /> },
+  { name: 'Instituições', href: '/instituicoes', icon: <FaBuilding /> },
+  { name: 'Favoritos', href: '/favoritos', icon: <FaHeart /> },
+  { name: 'Perfil', href: '/perfil', icon: <FaUser /> },
 ]
 
 export function Navigation() {
@@ -36,49 +40,65 @@ export function Navigation() {
         <Flex h={16} alignItems="center" justifyContent="space-between">
           {/* Logo */}
           <Link href="/">
-            <Flex alignItems="center" gap={2} cursor="pointer">
-              <Text fontSize="2xl">🎓</Text>
+            <HStack spacing={1} cursor="pointer">
+              <Icon as={GraduationCap} w={8} h={8} color="blue.500" />
               <Text
                 fontSize="xl"
                 fontWeight="bold"
-                bgGradient="linear(to-r, primary.500, secondary.500)"
+                bgGradient="linear(to-r, blue.500, purple.600)"
                 bgClip="text"
               >
                 TechForma
               </Text>
-            </Flex>
+            </HStack>
           </Link>
 
           {/* Navigation Items */}
-          <Flex gap={4} display={{ base: 'none', md: 'flex' }}>
+          <HStack spacing={2} display={{ base: 'none', md: 'flex' }} py={2}>
             {NavItems.map((item) => (
-              <Link key={item.name} href={item.href}>
+              <Link key={item.name} href={item.href} passHref>
                 <Button
+                  as="a"
                   variant={pathname === item.href ? 'solid' : 'ghost'}
-                  colorScheme={pathname === item.href ? 'blue' : 'gray'}
+                  bg={pathname === item.href ? '#007bff' : 'transparent'}
+                  color={pathname === item.href ? 'white' : 'gray.800'}
                   size="sm"
+                  borderRadius="full"
+                  _hover={{
+                    bg: pathname === item.href ? 'blue.800' : 'gray.100',
+                    color: pathname === item.href ? 'white' : 'gray.900'
+                  }}
+                  leftIcon={item.icon}
                 >
-                  {item.icon} {item.name}
+                  {item.name}
                 </Button>
               </Link>
             ))}
-          </Flex>
+          </HStack>
 
           {/* Mobile Navigation */}
-          <Flex gap={2} display={{ base: 'flex', md: 'none' }}>
+          <HStack spacing={1} display={{ base: 'flex', md: 'none' }}>
             {NavItems.map((item) => (
-              <Link key={item.name} href={item.href}>
+              <Link key={item.name} href={item.href} passHref>
                 <Button
+                  as="a"
                   variant={pathname === item.href ? 'solid' : 'ghost'}
                   colorScheme={pathname === item.href ? 'blue' : 'gray'}
-                  size="sm"
+                  bg={pathname === item.href ? 'blue.500' : 'transparent'}
+                  color={pathname === item.href ? 'white' : 'gray.800'}
+                  size="md"
                   p={2}
+                  borderRadius="full"
+                  _hover={{
+                    bg: pathname === item.href ? 'blue.600' : 'gray.100',
+                    color: pathname === item.href ? 'white' : 'gray.900'
+                  }}
                 >
                   {item.icon}
                 </Button>
               </Link>
             ))}
-          </Flex>
+          </HStack>
         </Flex>
       </Container>
     </Box>
