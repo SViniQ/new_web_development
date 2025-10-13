@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "TechForma - Plataforma de Formação em Tecnologia",
+  title: "TechForma",
   description: "Encontre os melhores programas de formação em tecnologia. Centralizamos oportunidades de capacitação em desenvolvimento, dados, cloud, UX e muito mais.",
 };
 

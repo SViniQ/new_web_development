@@ -38,7 +38,6 @@ export function Navigation() {
     >
       <Container maxW="1400px">
         <Flex h={16} alignItems="center" justifyContent="space-between">
-          {/* Logo */}
           <Link href="/">
             <HStack spacing={1} cursor="pointer">
               <Icon as={GraduationCap} w={8} h={8} color="blue.500" />
@@ -53,7 +52,6 @@ export function Navigation() {
             </HStack>
           </Link>
 
-          {/* Navigation Items (Desktop) */}
           <HStack spacing={2} display={{ base: 'none', md: 'flex' }} py={2}>
             {NavItems.map((item) => (
               <Link key={item.name} href={item.href} passHref>
@@ -63,7 +61,6 @@ export function Navigation() {
                   bg={pathname === item.href ? '#007bff' : 'transparent'}
                   color={pathname === item.href ? 'white' : 'gray.800'}
                   size="sm"
-                  // Reduzido para 'md' no botão selecionado
                   borderRadius={pathname === item.href ? 'md' : 'full'}
                   _hover={{
                     bg: pathname === item.href ? 'blue.800' : 'gray.100',
@@ -77,7 +74,6 @@ export function Navigation() {
             ))}
           </HStack>
 
-          {/* Mobile Navigation */}
           <HStack spacing={1} display={{ base: 'flex', md: 'none' }}>
             {NavItems.map((item) => (
               <Link key={item.name} href={item.href} passHref>
@@ -89,7 +85,6 @@ export function Navigation() {
                   color={pathname === item.href ? 'white' : 'gray.800'}
                   size="md"
                   p={2}
-                  // Reduzido para 'md' no botão selecionado (mobile)
                   borderRadius={pathname === item.href ? 'md' : 'full'}
                   _hover={{
                     bg: pathname === item.href ? 'blue.600' : 'gray.100',
