@@ -7,137 +7,150 @@ import {
   VStack,
   Heading,
   Text,
-  Button,
   SimpleGrid,
-  HStack,
   Spinner,
   Center,
+  HStack,
+  IconButton,
 } from '@chakra-ui/react'
-import Link from 'next/link'
 import { Navigation } from '@/components/Navigation'
+import FilterBar from '@/components/FilterBar'
 import ProgramCard from '@/components/ProgramCard'
 import { programasService } from '@/services/programas.service'
+import { useAppStore } from '@/store/useAppStore'
 import { Programa } from '@/types/domain'
-import { ArrowForwardIcon } from '@chakra-ui/icons'
+import { ArrowLeftIcon, ArrowRightIcon } from '@chakra-ui/icons'
 
-export default function Home() {
-  const [programasDestaque, setProgramasDestaque] = useState<Programa[]>([])
+const ITEMS_PER_PAGE = 6
+
+export default function Programas() {
+  const [todosProgramas, setTodosProgramas] = useState<Programa[]>([])
+  const [programasDaPagina, setProgramasDaPagina] = useState<Programa[]>([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  const { filtros } = useAppStore()
+  const [currentPage, setCurrentPage] = useState(1)
 
   useEffect(() => {
     const carregarProgramas = async () => {
+      setLoading(true)
+      setError(null)
       try {
-        const programas = await programasService.listarProgramas()
-        setProgramasDestaque(programas.slice(0, 6))
-      } catch (error) {
-        console.error('Erro ao carregar programas:', error)
+        const resultado = await programasService.listarProgramas(filtros)
+        setTodosProgramas(resultado)
+        setCurrentPage(1)
+      } catch (err) {
+        setError('Erro ao carregar programas. Tente novamente.')
+        console.error('Erro ao carregar programas:', err)
       } finally {
         setLoading(false)
       }
     }
-
     carregarProgramas()
-  }, [])
+  }, [filtros])
+
+  useEffect(() => {
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
+    const endIndex = startIndex + ITEMS_PER_PAGE
+    setProgramasDaPagina(todosProgramas.slice(startIndex, endIndex))
+  }, [todosProgramas, currentPage])
+
+  const totalPages = Math.ceil(todosProgramas.length / ITEMS_PER_PAGE)
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(prev => prev - 1)
+    }
+  }
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(prev => prev + 1)
+    }
+  }
+
+  const renderContent = () => {
+    if (loading) {
+      return (
+        <Center py={10}>
+          <VStack spacing={4}>
+            <Spinner size="xl" color="blue.500" />
+            <Text color="gray.600">Carregando programas...</Text>
+          </VStack>
+        </Center>
+      )
+    }
+
+    if (error) {
+        return (
+            <Center py={10}>
+                <Text fontSize="lg" color="red.500">
+                    {error}
+                </Text>
+            </Center>
+        )
+    }
+
+    if (todosProgramas.length === 0) {
+      return (
+        <Center py={10}>
+          <VStack spacing={4}>
+            <Text fontSize="lg" color="gray.600">
+              Nenhum programa encontrado com os filtros aplicados.
+            </Text>
+            <Text fontSize="sm" color="gray.500">
+              Tente ajustar os filtros ou limpe-os para ver todos os programas.
+            </Text>
+          </VStack>
+        </Center>
+      )
+    }
+
+    return (
+      <VStack spacing={6} align="stretch">
+        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6}>
+          {programasDaPagina.map((programa) => (
+            <ProgramCard key={programa.id} programa={programa} />
+          ))}
+        </SimpleGrid>
+        {totalPages > 1 && (
+          <HStack justify="center" mt={4} spacing={2}>
+            <IconButton
+              onClick={handlePreviousPage}
+              isDisabled={currentPage === 1}
+              aria-label="Página anterior"
+              icon={<ArrowLeftIcon />}
+            />
+            <Text>
+              Página {currentPage} de {totalPages}
+            </Text>
+            <IconButton
+              onClick={handleNextPage}
+              isDisabled={currentPage === totalPages}
+              aria-label="Próxima página"
+              icon={<ArrowRightIcon />}
+            />
+          </HStack>
+        )}
+      </VStack>
+    )
+  }
 
   return (
     <Box minH="100vh" bg="gray.50">
       <Navigation />
-      
-      <Box 
-        bgGradient="linear(to-br, #E6F0F8, #E3E9F8)" 
-        color="gray.800" 
-        py={{ base: 16, md: 24 }}
-      >
-        <Container maxW="1400px">
-          <VStack spacing={3} textAlign="center">
-            <Box px={4} py={2} bg="orange.50" borderRadius="full">
-              <Text fontSize="sm" fontWeight="medium" color="orange.400">
-                ✨ Sua carreira em tecnologia começa aqui
-              </Text>
-            </Box>
-            <Box>
-              <Heading as="h1" size={{ base: '2xl', md: '3xl' }} mb="1" lineHeight="1.1" fontWeight="bold" color="gray.800">
-                Encontre os melhores
-              </Heading>
-              <Heading as="h1" size={{ base: '2xl', md: '3xl' }} mb="1" lineHeight="1.1" fontWeight="bold">
-                <Text as="span" bgGradient="linear(to-r, #3A73E4, #805AD5)" bgClip="text">
-                  programas de formação
-                </Text>
-              </Heading>
-              <Heading as="h1" size={{ base: '2xl', md: '3xl' }} lineHeight="1.1" fontWeight="bold" color="gray.800">
-                em tecnologia
-              </Heading>
-            </Box>
-            
-            <Text fontSize={{ base: 'md', md: 'xl' }} maxW="2xl" color="gray.600" lineHeight="1.6">
-              Centralizamos oportunidades de capacitação em desenvolvimento, dados, cloud, UX e muito mais.
-            </Text>
-            
-            <HStack spacing={4} pt={4} flexDirection={{ base: 'column', sm: 'row' }}>
-              <Button as={Link} href="/programas" size="lg" colorScheme="blue" bg="#007bff" borderRadius="2xl" rightIcon={<ArrowForwardIcon />} fontSize="sm" w={{ base: 'full', sm: 'auto' }}>
-                Explorar programas
-              </Button>
-              <Button 
-                as={Link} 
-                href="/instituicoes" 
-                size="lg" 
-                variant="outline"
-                bg="white"
-                color="gray.800"
-                borderColor="gray.200"
-                _hover={{ bg: "gray.50" }}
-                boxShadow="sm"
-                borderRadius="2xl"
-                fontSize="sm"
-                w={{ base: 'full', sm: 'auto' }}
-              >
-                Ver instituições
-              </Button>
-            </HStack>
-          </VStack>
-        </Container>
-      </Box>
-
-      <Container maxW="1400px" py={16}>
+      <Container maxW="1400px" py={8}>
         <VStack spacing={8} align="stretch">
-          
-          <HStack justify="space-between" align="end" pb={4} borderBottom="1px solid" borderColor="transparent" flexDirection={{ base: 'column', md: 'row' }} alignItems={{ base: 'center', md: 'flex-end' }}>
-            <Box textAlign={{ base: 'center', md: 'left' }}>
-              <Heading as="h2" size="xl" color="gray.800">
-                Programas em destaque
-              </Heading>
-              <Text fontSize="lg" color="gray.600">
-                Confira as melhores oportunidades disponíveis
-              </Text>
-            </Box>
-            <Button
-              as={Link}
-              href="/programas"
-              variant="outline"
-              colorScheme="gray"
-              rightIcon={<ArrowForwardIcon />}
-              fontWeight="medium"
-              borderRadius="lg"
-              mt={{ base: 4, md: 0 }}
-            >
-              Ver todos
-            </Button>
-          </HStack>
-
-          {loading ? (
-            <Center py={10}>
-              <VStack spacing={4}>
-                <Spinner size="xl" color="blue.500" />
-                <Text color="gray.600">Carregando programas...</Text>
-              </VStack>
-            </Center>
-          ) : (
-            <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6}>
-              {programasDestaque.map((programa) => (
-                <ProgramCard key={programa.id} programa={programa} />
-              ))}
-            </SimpleGrid>
-          )}
+          <Box textAlign={{ base: 'center', md: 'left' }}>
+            <Heading as="h1" size={{ base: 'lg', md: 'xl' }} fontWeight="bold" mb={2}>
+              Catálogo de Programas
+            </Heading>
+            <Text fontSize={{ base: 'sm', md: 'md' }} color="gray.600">
+              Encontre o programa ideal para sua carreira em tecnologia
+            </Text>
+          </Box>
+          <FilterBar />
+          {renderContent()}
         </VStack>
       </Container>
     </Box>

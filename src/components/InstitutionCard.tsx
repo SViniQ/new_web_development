@@ -11,7 +11,6 @@ import {
   VStack,
   HStack,
   Avatar,
-  Link,
   Box,
 } from '@chakra-ui/react'
 import { ExternalLinkIcon } from '@chakra-ui/icons'

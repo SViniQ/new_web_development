@@ -64,7 +64,6 @@ export function Navigation() {
             {NavItems.map((item) => (
               <Link key={item.name} href={item.href} passHref>
                 <Button
-                  as="a"
                   variant={pathname === item.href ? 'solid' : 'ghost'}
                   bg={pathname === item.href ? '#007bff' : 'transparent'}
                   color={pathname === item.href ? 'white' : 'gray.800'}
