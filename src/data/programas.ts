@@ -4,7 +4,7 @@ export const programas: Programa[] = [
   {
     id: "prog-1",
     titulo: "Desenvolvimento Frontend Moderno",
-    instituicaoId: "inst-1",
+    instituicaoId: "rocketseat",
     area: "frontend",
     modalidade: "online",
     nivel: "intermediario",
@@ -23,7 +23,7 @@ export const programas: Programa[] = [
   {
     id: "prog-2",
     titulo: "Data Science e Machine Learning",
-    instituicaoId: "inst-2",
+    instituicaoId: "usp",
     area: "dados",
     modalidade: "hibrido",
     nivel: "avancado",
@@ -33,8 +33,8 @@ export const programas: Programa[] = [
       fim: "2024-03-01",
     },
     editalUrl: "https://example.com/edital-2",
-    cidade: "Rio de Janeiro",
-    estado: "RJ",
+    cidade: "São José dos Campos",
+    estado: "SP",
     tags: ["Python", "Pandas", "TensorFlow", "PyTorch", "SQL"],
     resumo: "Transforme dados em insights valiosos com machine learning.",
     descricaoCompleta: "Programa avançado em ciência de dados que cobre desde análise exploratória até modelos de machine learning em produção. Projetos reais com dados de empresas parceiras."
@@ -42,7 +42,7 @@ export const programas: Programa[] = [
   {
     id: "prog-3",
     titulo: "Arquitetura Backend com Node.js",
-    instituicaoId: "inst-1",
+    instituicaoId: "cesar",
     area: "backend",
     modalidade: "presencial",
     nivel: "intermediario",
@@ -52,8 +52,8 @@ export const programas: Programa[] = [
       fim: "2024-02-20",
     },
     editalUrl: "https://example.com/edital-3",
-    cidade: "Belo Horizonte",
-    estado: "MG",
+    cidade: "Recife",
+    estado: "PE",
     tags: ["Node.js", "Express", "MongoDB", "Docker", "API REST"],
     resumo: "Construa APIs robustas e escaláveis com Node.js.",
     descricaoCompleta: "Aprenda a desenvolver backends modernos com Node.js, incluindo arquitetura limpa, testes automatizados, containerização e deploy em cloud."
@@ -61,7 +61,7 @@ export const programas: Programa[] = [
   {
     id: "prog-4",
     titulo: "Cloud Computing com AWS",
-    instituicaoId: "inst-3",
+    instituicaoId: "udemy",
     area: "cloud",
     modalidade: "online",
     nivel: "avancado",
@@ -71,8 +71,8 @@ export const programas: Programa[] = [
       fim: "2024-04-01",
     },
     editalUrl: "https://example.com/edital-4",
-    cidade: "Brasília",
-    estado: "DF",
+    cidade: "Curitiba",
+    estado: "PR",
     tags: ["AWS", "Lambda", "S3", "RDS", "CloudFormation"],
     resumo: "Domine a computação em nuvem com Amazon Web Services.",
     descricaoCompleta: "Programa completo de AWS que prepara para certificações e projetos reais. Inclui laboratórios práticos e projeto final de arquitetura cloud."
@@ -80,7 +80,7 @@ export const programas: Programa[] = [
   {
     id: "prog-5",
     titulo: "UX/UI Design Avançado",
-    instituicaoId: "inst-4",
+    instituicaoId: "ufpe",
     area: "ux",
     modalidade: "hibrido",
     nivel: "intermediario",
@@ -90,8 +90,8 @@ export const programas: Programa[] = [
       fim: "2024-03-15",
     },
     editalUrl: "https://example.com/edital-5",
-    cidade: "Curitiba",
-    estado: "PR",
+    cidade: "Florianópolis",
+    estado: "SC",
     tags: ["Figma", "Design System", "Prototipagem", "User Research", "Usabilidade"],
     resumo: "Crie experiências digitais excepcionais centradas no usuário.",
     descricaoCompleta: "Programa que combina teoria e prática em UX/UI Design, com foco em metodologias ágeis, pesquisa com usuários e criação de design systems."
@@ -99,7 +99,7 @@ export const programas: Programa[] = [
   {
     id: "prog-6",
     titulo: "Desenvolvimento Mobile React Native",
-    instituicaoId: "inst-5",
+    instituicaoId: "curso_em_video",
     area: "mobile",
     modalidade: "online",
     nivel: "iniciante",
@@ -118,7 +118,7 @@ export const programas: Programa[] = [
   {
     id: "prog-7",
     titulo: "Segurança Cibernética e Ethical Hacking",
-    instituicaoId: "inst-6",
+    instituicaoId: "cesar",
     area: "seguranca",
     modalidade: "presencial",
     nivel: "avancado",
@@ -137,7 +137,7 @@ export const programas: Programa[] = [
   {
     id: "prog-8",
     titulo: "Full Stack JavaScript",
-    instituicaoId: "inst-2",
+    instituicaoId: "udemy",
     area: "frontend",
     modalidade: "hibrido",
     nivel: "intermediario",

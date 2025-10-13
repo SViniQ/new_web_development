@@ -34,7 +34,6 @@ const FilterBar = () => {
             placeholder="Buscar por título, tags ou descrição..."
             value={filtros.busca}
             onChange={(e) => setFiltros({ busca: e.target.value })}
-            // Tamanho do input alterado para 'sm'
             size="sm" 
             bg="transparent"
             borderColor="gray.200"
@@ -59,7 +58,6 @@ const FilterBar = () => {
           placeholder="Área"
           value={filtros.area || ""}
           onChange={(e) => setFiltros({ area: e.target.value as Area })}
-          // Tamanho do select alterado para 'sm'
           size="sm" 
           bg="transparent"
           borderColor="gray.200"
@@ -94,7 +92,6 @@ const FilterBar = () => {
           placeholder="Nível"
           value={filtros.nivel || ""}
           onChange={(e) => setFiltros({ nivel: e.target.value as Nivel })}
-          // Tamanho do select alterado para 'sm'
           size="sm" 
           bg="transparent"
           borderColor="gray.200"

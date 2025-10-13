@@ -2,45 +2,45 @@ import { Instituicao } from '@/types/domain'
 
 export const instituicoes: Instituicao[] = [
   {
-    id: "inst-1",
-    nome: "Instituto de Tecnologia Digital",
-    logoUrl: "https://via.placeholder.com/120x80/3B82F6/FFFFFF?text=ITD",
-    siteUrl: "https://example.com",
-    descricao: "Referência em formação tecnológica no Brasil, com mais de 15 anos de experiência."
+    id: "cesar",
+    nome: "CESAR",
+    logoUrl: "/Cesar.jpg",
+    siteUrl: "https://www.cesar.org.br/",
+    descricao: "Um centro de pesquisa e inovação sem fins lucrativos, com sede no Recife, focado em desenvolvimento de software e consultoria em tecnologia."
   },
   {
-    id: "inst-2",
-    nome: "DevAcademy",
-    logoUrl: "https://via.placeholder.com/120x80/8B5CF6/FFFFFF?text=DEV",
-    siteUrl: "https://example.com",
-    descricao: "Especializada em formação prática para desenvolvedores e profissionais de tech."
+    id: "curso_em_video",
+    nome: "Curso em Vídeo",
+    logoUrl: "/curso_em_video.jpg",
+    siteUrl: "https://www.cursoemvideo.com/",
+    descricao: "Plataforma de ensino online conhecida por oferecer cursos de informática gratuitos e de alta qualidade."
   },
   {
-    id: "inst-3",
-    nome: "CloudTech University",
-    logoUrl: "https://via.placeholder.com/120x80/FB923C/FFFFFF?text=CTU",
-    siteUrl: "https://example.com",
-    descricao: "Líder em educação para tecnologias em nuvem e infraestrutura moderna."
+    id: "rocketseat",
+    nome: "Rocketseat",
+    logoUrl: "/Rocketseat.jpg",
+    siteUrl: "https://www.rocketseat.com.br",
+    descricao: "Plataforma de educação em tecnologia com foco em impulsionar carreiras, principalmente no ecossistema JavaScript. Oferece cursos, bootcamps e uma comunidade ativa."
   },
   {
-    id: "inst-4",
-    nome: "UX Design Institute",
-    logoUrl: "https://via.placeholder.com/120x80/10B981/FFFFFF?text=UXI",
-    siteUrl: "https://example.com",
-    descricao: "Centro de excelência em design de experiência do usuário e interfaces."
+    id: "udemy",
+    nome: "Udemy",
+    logoUrl: "/Udemy.png",
+    siteUrl: "https://www.udemy.com",
+    descricao: "Uma plataforma global de aprendizado online que oferece uma vasta biblioteca de cursos em vídeo de instrutores de todo o mundo."
   },
   {
-    id: "inst-5",
-    nome: "Mobile Dev School",
-    logoUrl: "https://via.placeholder.com/120x80/F59E0B/FFFFFF?text=MDS",
-    siteUrl: "https://example.com",
-    descricao: "Focada no desenvolvimento de aplicações móveis nativas e multiplataforma."
+    id: "ufpe",
+    nome: "Universidade Federal de Pernambuco (UFPE)",
+    logoUrl: "/Ufpe.png",
+    siteUrl: "https://www.ufpe.br",
+    descricao: "Uma das principais universidades públicas do Brasil, com destaque em pesquisa e ensino superior em diversas áreas, incluindo tecnologia."
   },
   {
-    id: "inst-6",
-    nome: "Security Pro Academy",
-    logoUrl: "https://via.placeholder.com/120x80/EF4444/FFFFFF?text=SPA",
-    siteUrl: "https://example.com",
-    descricao: "Especializada em segurança cibernética e proteção de dados."
+    id: "usp",
+    nome: "Universidade de São Paulo (USP)",
+    logoUrl: "/Usp.svg",
+    siteUrl: "https://www.usp.br",
+    descricao: "A maior e mais importante universidade pública do Brasil, com um grande volume de produção científica e cursos de excelência em tecnologia e engenharia."
   }
 ]
