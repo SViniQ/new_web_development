@@ -10,8 +10,9 @@ import {
   SimpleGrid,
   Spinner,
   Center,
-  Alert,
-  AlertIcon,
+  Button,
+  HStack,
+  IconButton,
 } from '@chakra-ui/react'
 import { Navigation } from '@/components/Navigation'
 import FilterBar from '@/components/FilterBar'
@@ -19,12 +20,17 @@ import ProgramCard from '@/components/ProgramCard'
 import { programasService } from '@/services/programas.service'
 import { useAppStore } from '@/store/useAppStore'
 import { Programa } from '@/types/domain'
+import { ArrowLeftIcon, ArrowRightIcon } from '@chakra-ui/icons'
+
+const ITEMS_PER_PAGE = 6 // Define 6 programas por página
 
 export default function Programas() {
-  const [programas, setProgramas] = useState<Programa[]>([])
+  const [todosProgramas, setTodosProgramas] = useState<Programa[]>([])
+  const [programasDaPagina, setProgramasDaPagina] = useState<Programa[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const { filtros } = useAppStore()
+  const [currentPage, setCurrentPage] = useState(1)
 
   useEffect(() => {
     const carregarProgramas = async () => {
@@ -32,7 +38,8 @@ export default function Programas() {
       setError(null)
       try {
         const resultado = await programasService.listarProgramas(filtros)
-        setProgramas(resultado)
+        setTodosProgramas(resultado)
+        setCurrentPage(1) // Reseta para a primeira página ao aplicar novos filtros
       } catch (err) {
         setError('Erro ao carregar programas. Tente novamente.')
         console.error('Erro ao carregar programas:', err)
@@ -40,67 +47,114 @@ export default function Programas() {
         setLoading(false)
       }
     }
-
     carregarProgramas()
   }, [filtros])
+
+  useEffect(() => {
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
+    const endIndex = startIndex + ITEMS_PER_PAGE
+    setProgramasDaPagina(todosProgramas.slice(startIndex, endIndex))
+  }, [todosProgramas, currentPage])
+
+  const totalPages = Math.ceil(todosProgramas.length / ITEMS_PER_PAGE)
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(prev => prev - 1)
+    }
+  }
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(prev => prev + 1)
+    }
+  }
+
+  const renderContent = () => {
+    if (loading) {
+      return (
+        <Center py={10}>
+          <VStack spacing={4}>
+            <Spinner size="xl" color="blue.500" />
+            <Text color="gray.600">Carregando programas...</Text>
+          </VStack>
+        </Center>
+      )
+    }
+
+    if (error) {
+        return (
+            <Center py={10}>
+                <Text fontSize="lg" color="red.500">
+                    {error}
+                </Text>
+            </Center>
+        )
+    }
+
+    if (todosProgramas.length === 0) {
+      return (
+        <Center py={10}>
+          <VStack spacing={4}>
+            <Text fontSize="lg" color="gray.600">
+              Nenhum programa encontrado com os filtros aplicados.
+            </Text>
+            <Text fontSize="sm" color="gray.500">
+              Tente ajustar os filtros ou limpe-os para ver todos os programas.
+            </Text>
+          </VStack>
+        </Center>
+      )
+    }
+
+    return (
+      <VStack spacing={6} align="stretch">
+        <Text fontSize="sm" color="gray.500">
+          {todosProgramas.length} programa{todosProgramas.length !== 1 ? 's' : ''} encontrado{todosProgramas.length !== 1 ? 's' : ''}
+        </Text>
+        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6}>
+          {programasDaPagina.map((programa) => (
+            <ProgramCard key={programa.id} programa={programa} />
+          ))}
+        </SimpleGrid>
+        {totalPages > 1 && (
+          <HStack justify="center" mt={4} spacing={2}>
+            <IconButton
+              onClick={handlePreviousPage}
+              isDisabled={currentPage === 1}
+              aria-label="Página anterior"
+              icon={<ArrowLeftIcon />}
+            />
+            <Text>
+              Página {currentPage} de {totalPages}
+            </Text>
+            <IconButton
+              onClick={handleNextPage}
+              isDisabled={currentPage === totalPages}
+              aria-label="Próxima página"
+              icon={<ArrowRightIcon />}
+            />
+          </HStack>
+        )}
+      </VStack>
+    )
+  }
 
   return (
     <Box minH="100vh" bg="gray.50">
       <Navigation />
-      
-      <Container maxW="container.xl" py={8}>
+      <Container maxW="1400px" py={8}>
         <VStack spacing={8} align="stretch">
-          <Box textAlign="center">
-            <Heading as="h1" size="xl" color="blue.600" mb={4}>
-              Programas de Formação
+          <Box textAlign="left">
+            <Heading as="h1" size="xl" fontWeight="bold" mb={2}>
+              Catálogo de Programas
             </Heading>
-            <Text fontSize="lg" color="gray.600">
-              Descubra os melhores programas para acelerar sua carreira em tecnologia
+            <Text fontSize="md" color="gray.600">
+              Encontre o programa ideal para sua carreira em tecnologia
             </Text>
           </Box>
-
           <FilterBar />
-
-          {error && (
-            <Alert status="error">
-              <AlertIcon />
-              {error}
-            </Alert>
-          )}
-
-          {loading ? (
-            <Center py={10}>
-              <VStack spacing={4}>
-                <Spinner size="xl" color="blue.500" />
-                <Text color="gray.600">Carregando programas...</Text>
-              </VStack>
-            </Center>
-          ) : programas.length === 0 ? (
-            <Center py={10}>
-              <VStack spacing={4}>
-                <Text fontSize="lg" color="gray.600">
-                  Nenhum programa encontrado com os filtros atuais.
-                </Text>
-                <Text fontSize="sm" color="gray.500">
-                  Tente ajustar os filtros ou limpe-os para ver todos os programas.
-                </Text>
-              </VStack>
-            </Center>
-          ) : (
-            <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6}>
-              {programas.map((programa) => (
-                <ProgramCard key={programa.id} programa={programa} />
-              ))}
-            </SimpleGrid>
-          )}
-
-          {!loading && programas.length > 0 && (
-            <Center>
-              <Text fontSize="sm" color="gray.500">
-                {programas.length} programa{programas.length !== 1 ? 's' : ''} encontrado{programas.length !== 1 ? 's' : ''}
-              </Text>
-            </Center>
-          )}
+          {renderContent()}
         </VStack>
       </Container>
     </Box>

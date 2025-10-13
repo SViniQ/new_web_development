@@ -36,23 +36,25 @@ export default function Perfil() {
       
       <Container maxW="1400px" py={8}>
         <VStack spacing={8} align="stretch">
-          <Box textAlign="center">
-            <Heading as="h1" size="xl" color="blue.600" mb={4}>
-              👤 Meu Perfil
+          {/* Cabeçalho alinhado à esquerda */}
+          <Box textAlign="left">
+            <Heading as="h1" size="xl" fontWeight="bold" mb={2}>
+              Meu Perfil
             </Heading>
-            <Text fontSize="lg" color="gray.600">
+            <Text fontSize="md" color="gray.600">
               Gerencie suas informações e preferências
             </Text>
           </Box>
 
           <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={8}>
-            {/* Informações Pessoais */}
             <Card shadow="md">
               <CardHeader>
-                <Heading as="h2" size="md" color="blue.700" display="flex" alignItems="center" gap={2}>
+                <HStack spacing={2} color="black" alignItems="center">
                   <InfoIcon />
-                  Informações Pessoais
-                </Heading>
+                  <Heading as="h2" size="md">
+                    Informações Pessoais
+                  </Heading>
+                </HStack>
               </CardHeader>
               <CardBody>
                 <VStack spacing={6} align="stretch">
@@ -87,12 +89,13 @@ export default function Perfil() {
               </CardBody>
             </Card>
 
-            {/* Áreas de Interesse */}
             <Card shadow="md">
               <CardHeader>
-                <Heading as="h2" size="md" color="blue.700" display="flex" alignItems="center" gap={2}>
-                  🎯 Áreas de Interesse
-                </Heading>
+                <HStack spacing={2} color="black" alignItems="center">
+                  <Heading as="h2" size="md">
+                    Áreas de Interesse
+                  </Heading>
+                </HStack>
               </CardHeader>
               <CardBody>
                 <VStack spacing={4} align="stretch">
@@ -106,10 +109,10 @@ export default function Perfil() {
                         <Badge 
                           colorScheme="blue" 
                           variant="solid"
-                          px={3}
+                          px={2}
                           py={1}
                           borderRadius="full"
-                          fontSize="sm"
+                          fontSize="xs"
                         >
                           {interesse}
                         </Badge>
@@ -119,7 +122,7 @@ export default function Perfil() {
                   
                   <Box mt={4} p={4} bg="blue.50" borderRadius="md" borderLeft="4px solid" borderLeftColor="blue.400">
                     <Text fontSize="sm" color="blue.800">
-                      💡 <strong>Dica:</strong> Com base nos seus interesses, recomendamos explorar os programas de 
+                      <strong>Dica:</strong> Com base nos seus interesses, recomendamos explorar os programas de 
                       <strong> Frontend</strong>, <strong>Backend</strong> e <strong>Cloud</strong>.
                     </Text>
                   </Box>
@@ -128,12 +131,13 @@ export default function Perfil() {
             </Card>
           </SimpleGrid>
 
-          {/* Estatísticas */}
           <Card shadow="md">
             <CardHeader>
-              <Heading as="h2" size="md" color="blue.700">
-                📊 Suas Estatísticas
-              </Heading>
+              <HStack spacing={2} color="black" alignItems="center">
+                <Heading as="h2" size="md">
+                  Suas Estatísticas
+                </Heading>
+              </HStack>
             </CardHeader>
             <CardBody>
               <SimpleGrid columns={{ base: 2, md: 4 }} spacing={6}>

@@ -12,6 +12,7 @@ import {
   HStack,
   Avatar,
   Link,
+  Box,
 } from '@chakra-ui/react'
 import { ExternalLinkIcon } from '@chakra-ui/icons'
 
@@ -22,56 +23,61 @@ interface InstitutionCardProps {
 const InstitutionCard = ({ instituicao }: InstitutionCardProps) => {
   return (
     <Card 
-      shadow="md" 
+      shadow="sm" 
       transition="all 0.2s"
-      _hover={{ shadow: 'lg', transform: 'translateY(-2px)' }}
       h="full"
+      display="flex"
+      flexDirection="column"
+      // Alteração: Removido o 'transform: scale(1.01)' para eliminar o zoom
+      _hover={{ shadow: 'md' }}
     >
-      <CardHeader>
-        <HStack spacing={4}>
-          <Avatar 
-            src={instituicao.logoUrl} 
-            name={instituicao.nome}
-            size="md"
-          />
-          <VStack align="start" spacing={1} flex={1}>
-            <Heading as="h3" size="md" lineHeight="1.2">
-              {instituicao.nome}
-            </Heading>
-            <Link 
-              href={instituicao.siteUrl} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              color="blue.500"
-              fontSize="sm"
-              _hover={{ textDecoration: 'underline' }}
-            >
-              {instituicao.siteUrl.replace('https://', '').replace('http://', '')}
-            </Link>
+      <VStack spacing={0} align="stretch" flexGrow={1}>
+        <CardHeader pb={3}>
+          <HStack spacing={4} align="start">
+            <Avatar 
+              src={instituicao.logoUrl} 
+              name={instituicao.nome}
+              size="md"
+            />
+            <VStack align="start" spacing={1} flex={1}>
+              <Heading as="h3" size="md" lineHeight="1.2" fontWeight="semibold">
+                {instituicao.nome}
+              </Heading>
+            </VStack>
+          </HStack>
+        </CardHeader>
+        
+        <CardBody pt={0} flexGrow={1}>
+          <VStack align="stretch" spacing={4} h="full">
+            <Text 
+              fontSize="sm" 
+              color="gray.600" 
+              lineHeight="1.5"
+              flexGrow={1} 
+              mb={4} 
+            > 
+              {instituicao.descricao}
+            </Text>
           </VStack>
-        </HStack>
-      </CardHeader>
-      
-      <CardBody pt={0}>
-        <VStack align="stretch" spacing={4}>
-          <Text fontSize="sm" color="gray.600" lineHeight="1.5">
-            {instituicao.descricao}
-          </Text>
-          
-          <Button 
-            as="a"
-            href={instituicao.siteUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            rightIcon={<ExternalLinkIcon />}
-            colorScheme="blue"
-            variant="outline"
-            size="sm"
-          >
-            Visitar site
-          </Button>
-        </VStack>
-      </CardBody>
+        </CardBody>
+      </VStack>
+
+      {/* Box contendo o botão, sempre alinhado ao final do Card */}
+      <Box p={6} pt={0}>
+        <Button 
+          as="a"
+          href={instituicao.siteUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          rightIcon={<ExternalLinkIcon />}
+          colorScheme="blue"
+          variant="outline"
+          size="sm"
+          w="full"
+        >
+          Visitar site
+        </Button>
+      </Box>
     </Card>
   )
 }

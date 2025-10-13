@@ -34,7 +34,11 @@ const FilterBar = () => {
             placeholder="Buscar por título, tags ou descrição..."
             value={filtros.busca}
             onChange={(e) => setFiltros({ busca: e.target.value })}
-            bg="white"
+            // Tamanho do input alterado para 'sm'
+            size="sm" 
+            bg="transparent"
+            borderColor="gray.200"
+            _hover={{ borderColor: 'gray.300' }}
           />
         </InputGroup>
         {hasActiveFilters && (
@@ -55,7 +59,11 @@ const FilterBar = () => {
           placeholder="Área"
           value={filtros.area || ""}
           onChange={(e) => setFiltros({ area: e.target.value as Area })}
-          bg="white"
+          // Tamanho do select alterado para 'sm'
+          size="sm" 
+          bg="transparent"
+          borderColor="gray.200"
+          _hover={{ borderColor: 'gray.300' }}
         >
           <option value="">Todas as áreas</option>
           <option value="frontend">Frontend</option>
@@ -71,7 +79,10 @@ const FilterBar = () => {
           placeholder="Modalidade"
           value={filtros.modalidade || ""}
           onChange={(e) => setFiltros({ modalidade: e.target.value as Modalidade })}
-          bg="white"
+          size="sm" 
+          bg="transparent"
+          borderColor="gray.200"
+          _hover={{ borderColor: 'gray.300' }}
         >
           <option value="">Todas as modalidades</option>
           <option value="presencial">Presencial</option>
@@ -83,7 +94,11 @@ const FilterBar = () => {
           placeholder="Nível"
           value={filtros.nivel || ""}
           onChange={(e) => setFiltros({ nivel: e.target.value as Nivel })}
-          bg="white"
+          // Tamanho do select alterado para 'sm'
+          size="sm" 
+          bg="transparent"
+          borderColor="gray.200"
+          _hover={{ borderColor: 'gray.300' }}
         >
           <option value="">Todos os níveis</option>
           <option value="iniciante">Iniciante</option>
