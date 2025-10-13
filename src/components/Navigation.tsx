@@ -36,7 +36,7 @@ export function Navigation() {
       backdropFilter="blur(10px)"
       backgroundColor="rgba(255, 255, 255, 0.9)"
     >
-      <Container maxW="container.xl">
+      <Container maxW="1400px">
         <Flex h={16} alignItems="center" justifyContent="space-between">
           {/* Logo */}
           <Link href="/">
@@ -53,7 +53,7 @@ export function Navigation() {
             </HStack>
           </Link>
 
-          {/* Navigation Items */}
+          {/* Navigation Items (Desktop) */}
           <HStack spacing={2} display={{ base: 'none', md: 'flex' }} py={2}>
             {NavItems.map((item) => (
               <Link key={item.name} href={item.href} passHref>
@@ -63,7 +63,8 @@ export function Navigation() {
                   bg={pathname === item.href ? '#007bff' : 'transparent'}
                   color={pathname === item.href ? 'white' : 'gray.800'}
                   size="sm"
-                  borderRadius="full"
+                  // Reduzido para 'md' no botão selecionado
+                  borderRadius={pathname === item.href ? 'md' : 'full'}
                   _hover={{
                     bg: pathname === item.href ? 'blue.800' : 'gray.100',
                     color: pathname === item.href ? 'white' : 'gray.900'
@@ -88,7 +89,8 @@ export function Navigation() {
                   color={pathname === item.href ? 'white' : 'gray.800'}
                   size="md"
                   p={2}
-                  borderRadius="full"
+                  // Reduzido para 'md' no botão selecionado (mobile)
+                  borderRadius={pathname === item.href ? 'md' : 'full'}
                   _hover={{
                     bg: pathname === item.href ? 'blue.600' : 'gray.100',
                     color: pathname === item.href ? 'white' : 'gray.900'

@@ -34,7 +34,7 @@ export default function Perfil() {
     <Box minH="100vh" bg="gray.50">
       <Navigation />
       
-      <Container maxW="container.xl" py={8}>
+      <Container maxW="1400px" py={8}>
         <VStack spacing={8} align="stretch">
           <Box textAlign="center">
             <Heading as="h1" size="xl" color="blue.600" mb={4}>
