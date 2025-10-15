@@ -2,12 +2,11 @@ import { Programa, Instituicao, FiltrosPrograma } from '@/types/domain'
 import { programas } from '@/data/programas'
 import { instituicoes } from '@/data/instituicoes'
 
-// Simula latência de rede
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
 export class ProgramasService {
   async listarProgramas(filtros?: Partial<FiltrosPrograma>): Promise<Programa[]> {
-    await delay(300) // Simula latência
+    await delay(300) 
     
     let resultado = [...programas]
     
