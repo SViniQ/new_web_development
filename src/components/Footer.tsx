@@ -3,7 +3,6 @@
 import {
   Box,
   Container,
-  Stack,
   Text,
   useColorModeValue,
   HStack,
@@ -13,7 +12,7 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
-import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa'
+import { FaGithub, FaInstagram } from 'react-icons/fa'
 import { GraduationCap } from 'lucide-react'
 import { ReactNode } from 'react'
 
@@ -54,6 +53,8 @@ const SocialButton = ({ children, href }: SocialButtonProps) => {
 }
 
 export function Footer() {
+  const separatorColor = useColorModeValue('gray.500', 'gray.500')
+  
   return (
     <Box
       bg={useColorModeValue('gray.100', 'gray.900')}
@@ -88,38 +89,40 @@ export function Footer() {
                     </Text>
                 </HStack>
                 <HStack spacing={3}>
-                    <SocialButton href={'#'}>
-                      <FaLinkedin size={20} />
-                    </SocialButton>
                     <SocialButton href={'https://github.com/SViniQ'}>
                       <FaGithub size={20} />
                     </SocialButton>
                     <SocialButton href={'#'}>
-                      <FaTwitter size={20} />
+                      <FaInstagram size={20} />
                     </SocialButton>
                 </HStack>
             </VStack>
             
-            <Stack 
-                direction={'column'}
-                spacing={2} 
-                align={{ base: 'center', md: 'flex-end' }}
+            <HStack 
+                spacing={3}
+                align={'center'}
                 order={{ base: 2, md: 2 }}
                 mt={{ base: 4, md: 0 }}
+                flexWrap={'wrap'}
+                justify={{ base: 'center', md: 'flex-end' }}
             >
-                {FooterLinks.map((item) => (
-                    <Link 
-                        key={item.name}
-                        as={NextLink} 
-                        href={item.href}
-                        fontSize={{ base: 'md', md: 'sm' }} 
-                        fontWeight={'medium'}
-                        _hover={{ color: 'blue.500' }}
-                    >
-                        {item.name}
-                    </Link>
+                {FooterLinks.map((item, index) => (
+                    <HStack key={item.name} spacing={3}>
+                        <Link 
+                            as={NextLink} 
+                            href={item.href}
+                            fontSize={{ base: 'sm', md: 'sm' }} 
+                            fontWeight={'medium'}
+                            _hover={{ color: 'blue.500' }}
+                        >
+                            {item.name}
+                        </Link>
+                        {index < FooterLinks.length - 1 && (
+                            <Text color={separatorColor}>|</Text>
+                        )}
+                    </HStack>
                 ))}
-            </Stack>
+            </HStack>
         </Container>
 
         <Box
